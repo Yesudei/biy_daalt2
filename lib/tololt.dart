@@ -4,7 +4,7 @@ class TololtPage extends StatefulWidget {
   const TololtPage({super.key});
 
   @override
-  State<TololtPage> createState() => _ToloiltPageState();
+  State<TololtPage> createState() => _TololtPageState();
 }
 
 class _TololtPageState extends State<TololtPage> {
@@ -109,21 +109,27 @@ class _TololtPageState extends State<TololtPage> {
 
   Widget _buildPaymentOptionButton(String text, bool isSelected) {
     return Expanded(
-        child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: isSelected ? const Color(0xFF3DA48D) : Colors.white,
-              foregroundColor: isSelected ? Colors.white : const Color(0xFF3DA48D),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-                side: BorderSide(
-                  color: isSelected ? const Color(0xFF3DA48D) : const Color(0xFFB4B4B6),
-                ),
-              ),
-              minimumSize: const Size(double.infinity, 50),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: isSelected ? const Color(0xFF3DA48D) : Colors.white,
+          foregroundColor: isSelected ? Colors.white : const Color(0xFF3DA48D),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+            side: BorderSide(
+              color: isSelected ? const Color(0xFF3DA48D) : const Color(0xFFB4B4B6),
             ),
-            onPressed: () {},
-            child: Text(
-                text,
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w
+          ),
+          minimumSize: const Size(double.infinity, 50),
+        ),
+        onPressed: () {},
+        child: Text(
+          text,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ),
+    );
+  }
+
