@@ -38,26 +38,27 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header with icon and title
-              Row(
-                children: [
-                  Image.asset(
-                    'assets/lock_icon.png', // Replace with your asset
-                    width: 80,
-                    height: 80,
-                  ),
-                  const SizedBox(width: 16),
-                  const Expanded(
-                    child: Text(
-                      'Нэвтрэх нууц үг солих',
-                      style: TextStyle(
-                        color: Color(0xFF085544),
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
+              // Header image
+              SizedBox(
+                width: 428,
+                height: 233,
+                child: Image.asset(
+                  'assets/images/img_1.png',
+                  width: 428,
+                  height: 233,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              const SizedBox(height: 16),
+
+              // Header text
+              const Text(
+                'Нэвтрэх нууц үг солих',
+                style: TextStyle(
+                  color: Color(0xFF085544),
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               const SizedBox(height: 20),
 

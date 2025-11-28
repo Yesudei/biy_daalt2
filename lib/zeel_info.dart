@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import 'tololt.dart'; // <-- import TololtPage
 
 class ZeelInfoPage extends StatefulWidget {
-  const ZeelInfoPage({super.key});
+  final String title;
+  final String date;
+  final String amount;
+
+  const ZeelInfoPage({
+    super.key,
+    required this.title,
+    required this.date,
+    required this.amount,
+  });
 
   @override
   State<ZeelInfoPage> createState() => _ZeelInfoPageState();
@@ -21,9 +31,9 @@ class _ZeelInfoPageState extends State<ZeelInfoPage> {
           icon: const Icon(Icons.arrow_back, color: Color(0xFF085544), size: 24),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          'Zeel Info',
-          style: TextStyle(
+        title: Text(
+          widget.title,
+          style: const TextStyle(
             color: Color(0xFF085544),
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -47,12 +57,16 @@ class _ZeelInfoPageState extends State<ZeelInfoPage> {
               const SizedBox(height: 20),
 
               // Loan Info Card
-              const LoanInfoCard(),
+              LoanInfoCard(
+                title: widget.title,
+                date: widget.date,
+                amount: widget.amount,
+              ),
               const SizedBox(height: 20),
 
               // Info Text
               const Text(
-                'Хэрэглэгч та доорх хэлбэрээс хийхүйгссэн конхог сонгох сонгож цааш үргэлжлүүлнэ үү.',
+                'Хэрэглэгч та доорх хэлбэрээс хийхийг хүссэн цонхыг сонгож цааш үргэлжлүүлнэ үү.',
                 style: TextStyle(
                   color: Color(0xFF6E7074),
                   fontSize: 14,
@@ -95,10 +109,12 @@ class _ZeelInfoPageState extends State<ZeelInfoPage> {
                   ),
                   onPressed: _selectedPaymentType.isNotEmpty
                       ? () {
-                    // TODO: Handle payment action
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Төлөлт $_selectedPaymentType сонгогдлоо'),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => TololtPage(
+                          paymentType: _selectedPaymentType,
+                        ),
                       ),
                     );
                   }
@@ -123,7 +139,7 @@ class _ZeelInfoPageState extends State<ZeelInfoPage> {
               const SizedBox(height: 12),
               const NavigationCard(
                 icon: Icons.description,
-                title: 'Гүйлгээний түгж',
+                title: 'Гүйлгээний түүх',
               ),
               const SizedBox(height: 12),
               const NavigationCard(
@@ -165,7 +181,16 @@ class _ZeelInfoPageState extends State<ZeelInfoPage> {
 }
 
 class LoanInfoCard extends StatelessWidget {
-  const LoanInfoCard({super.key});
+  final String title;
+  final String date;
+  final String amount;
+
+  const LoanInfoCard({
+    super.key,
+    required this.title,
+    required this.date,
+    required this.amount,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -188,10 +213,10 @@ class LoanInfoCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'ДИЖИТАЛ ЗЭЭЛ',
-                style: TextStyle(
-                  color: Colors.white,
+              Text(
+                title.toUpperCase(),
+                style: const TextStyle(
+                  color: Color(0xFF085544),
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                 ),
@@ -216,9 +241,9 @@ class LoanInfoCard extends StatelessWidget {
           const SizedBox(height: 12),
           const Divider(color: Color(0xFFE0E0E0)),
           const SizedBox(height: 12),
-          _buildInfoRow('Олгосон зээл', '5,000,000 ₮'),
+          _buildInfoRow('Олгосон зээл', amount),
           const SizedBox(height: 8),
-          _buildInfoRow('Зээлийн хүү', '3.6%'),
+          _buildInfoRow('Зээлийн хүү', '12%'),
           const SizedBox(height: 8),
           _buildInfoRow('Зээлийн хугацаа', '12 сар'),
           const SizedBox(height: 8),

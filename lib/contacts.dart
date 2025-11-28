@@ -7,6 +7,7 @@ class ContactsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F9F8),
+
       appBar: AppBar(
         backgroundColor: const Color(0xFFF5F9F8),
         elevation: 0,
@@ -23,52 +24,23 @@ class ContactsPage extends StatelessWidget {
           ),
         ),
       ),
+
       body: Column(
         children: [
-          // Profile Avatar Section
-          Container(
-            height: 120,
-            decoration: const BoxDecoration(
-              color: Color(0xFFF5F9F8),
-            ),
-            child: Center(
-              child: Stack(
-                children: [
-                  Container(
-                    width: 100,
-                    height: 100,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color(0xFFB8E6D3),
-                    ),
-                    child: const Icon(
-                      Icons.person,
-                      size: 50,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color(0xFF3DA48D),
-                      ),
-                      child: const Icon(
-                        Icons.add,
-                        size: 20,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+          // ================== TOP IMAGE ==================
+          SizedBox(
+            width: double.infinity,
+            height: 233,
+            child: Image.asset(
+              "assets/images/img_3.png",
+              fit: BoxFit.cover,
             ),
           ),
-          // Contacts List
+
+          const SizedBox(height: 10),
+
+
+          // ================== LIST ==================
           Expanded(
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -92,21 +64,22 @@ class ContactsPage extends StatelessWidget {
               ],
             ),
           ),
-          // Add Contact Button
+
+          // ================== ADD BUTTON ==================
           Padding(
             padding: const EdgeInsets.all(20),
             child: ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
-                foregroundColor: Color(0xFF3DA48D),
-                minimumSize: Size(double.infinity, 50),
+                foregroundColor: const Color(0xFF3DA48D),
+                minimumSize: const Size(double.infinity, 50),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
-                  side: BorderSide(color: Color(0xFF3DA48D)),
+                  side: const BorderSide(color: Color(0xFF3DA48D)),
                 ),
               ),
               onPressed: () {
-                // TODO: Add contact logic
+                // Add contact logic
               },
               icon: const Icon(Icons.add, color: Color(0xFF3DA48D)),
               label: const Text(
@@ -124,6 +97,8 @@ class ContactsPage extends StatelessWidget {
     );
   }
 }
+
+// ================== CONTACT CARD ==================
 
 class ContactCard extends StatelessWidget {
   final String name;
@@ -159,6 +134,7 @@ class ContactCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Title + Delete
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -185,6 +161,7 @@ class ContactCard extends StatelessWidget {
               ),
             ],
           ),
+
           const SizedBox(height: 12),
           _buildInfoRow('Овог', lastName),
           const SizedBox(height: 8),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'tootsooluur.dart'; // <- import your calculation page
 
 class HuseltPage extends StatefulWidget {
   const HuseltPage({super.key});
@@ -185,7 +186,16 @@ class _HuseltPageState extends State<HuseltPage> {
                     ),
                   ),
                   onPressed: () {
-                    // TODO: Implement calculation logic
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => TootsooluurPage(
+                          loanAmount: loanAmount,
+                          loanTerm: loanTerm,
+                          paymentDay: paymentDay,
+                        ),
+                      ),
+                    );
                   },
                   child: const Text(
                     'Тооцоолох',

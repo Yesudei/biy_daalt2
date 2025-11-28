@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 
-
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -148,7 +147,23 @@ class _RegisterPageState extends State<RegisterPage> {
 
               const SizedBox(height: 40),
 
-              // Divider with text
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "assets/images/faceid.png",
+                    width: 26,
+                    height: 26,
+                  ),
+                  const SizedBox(width: 40), // space between icons
+                  Image.asset(
+                    "assets/images/fingerprint.png",
+                    width: 26,
+                    height: 26,
+                  ),
+                ],
+              ),
+              const SizedBox(width: 60),
               Row(
                 children: const [
                   Expanded(child: Divider(color: Color(0x996E7074))),
@@ -162,6 +177,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   Expanded(child: Divider(color: Color(0x996E7074))),
                 ],
               ),
+
+              const SizedBox(height: 20),
 
               const SizedBox(height: 40),
 

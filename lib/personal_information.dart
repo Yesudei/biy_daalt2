@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'change_number.dart'; // import ChangeNumberPage
 
 class PersonalInformationPage extends StatelessWidget {
   const PersonalInformationPage({super.key});
@@ -29,38 +30,39 @@ class PersonalInformationPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Profile Avatar Section
-              Center(
-                child: Container(
-                  width: 120,
-                  height: 120,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xFFB8E6D3),
-                  ),
-                  child: const Icon(
-                    Icons.person,
-                    size: 60,
-                    color: Colors.white,
-                  ),
+              // ⭐ TOP IMAGE LIKE FIGMA ⭐
+              SizedBox(
+                width: 428,
+                height: 233,
+                child: Image.asset(
+                  'assets/images/img_3.png',
+                  fit: BoxFit.cover,
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
 
               // Personal Info Card
-              const InfoCard(
+              InfoCard(
                 title: 'Өөрийн мэдээлэл',
                 fields: {
                   'Ургийн овог': 'Боржигон',
                   'Овог нэр': 'Ө.СҮХ-ОЧИР',
                   'Регистрийн дугаар': 'ХК 860802 21',
                   'Хүйс': 'Эрэгтэй',
-                  'Утасны дугаар': '8815 5230',
+                  // Phone will be handled separately with edit icon
+                },
+                phoneNumber: '8815 5230',
+                onEditPhone: () {
+                  // Navigate to ChangeNumberPage
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ChangeNumberPage()),
+                  );
                 },
               ),
               const SizedBox(height: 20),
 
-              // Address Info Card
+              // Address Card
               const InfoCard(
                 title: 'Оршин суугаа нэмэлт хаяг',
                 fields: {
@@ -71,6 +73,7 @@ class PersonalInformationPage extends StatelessWidget {
                   'Хаалганы тоот': '88',
                 },
               ),
+              const SizedBox(height: 40),
             ],
           ),
         ),
@@ -82,11 +85,15 @@ class PersonalInformationPage extends StatelessWidget {
 class InfoCard extends StatelessWidget {
   final String title;
   final Map<String, String> fields;
+  final String? phoneNumber;
+  final VoidCallback? onEditPhone;
 
   const InfoCard({
     super.key,
     required this.title,
     required this.fields,
+    this.phoneNumber,
+    this.onEditPhone,
   });
 
   @override
@@ -117,7 +124,13 @@ class InfoCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          ...fields.entries.map((entry) => _buildInfoRow(entry.key, entry.value)),
+          ...fields.entries.map(
+                (entry) => _buildInfoRow(entry.key, entry.value),
+          ),
+          if (phoneNumber != null && onEditPhone != null) ...[
+            const SizedBox(height: 8),
+            _buildPhoneRow('Утасны дугаар', phoneNumber!, onEditPhone!),
+          ],
         ],
       ),
     );
@@ -150,6 +163,43 @@ class InfoCard extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPhoneRow(String label, String value, VoidCallback onEdit) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 120,
+            child: Text(
+              label,
+              style: const TextStyle(
+                color: Color(0xFF6E7074),
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Text(
+              value,
+              style: const TextStyle(
+                color: Color(0xFF085544),
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          IconButton(
+            onPressed: onEdit,
+            icon: const Icon(Icons.edit, color: Color(0xFF3DA48D)),
           ),
         ],
       ),
