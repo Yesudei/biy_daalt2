@@ -13,6 +13,12 @@ import 'personal_information.dart';
 import 'contacts.dart';
 import 'password_reset.dart';
 import 'change_number.dart';
+import 'verify.dart';
+import 'info.dart';
+import 'zeel_info.dart';
+import 'tololt.dart';
+import 'tololt2.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -43,7 +49,12 @@ class MyApp extends StatelessWidget {
         '/personal_information': (context) => const PersonalInformationPage(),
         '/contacts': (context) => const ContactsPage(),
         '/password_reset': (context) => const PasswordResetPage(),
-        '/change_number': (context) => const ChangeNumberPage
+        '/change_number': (context) => const ChangeNumberPage(),
+        '/verify': (context) => const VerifyNumberPage(),
+        '/info': (context) => const InfoPage(),
+        '/zeel_info': (context) => const ZeelInfoPage(),
+        '/tololt': (context) => const TololtPage(),
+        '/tololt2': (context) => const Tololt2Page(),
 
       },
     );
